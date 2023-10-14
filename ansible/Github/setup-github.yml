@@ -1,0 +1,14 @@
+---
+- name: Clone GitHub repository
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    repo_url: "https://github.com/username/repo.git"
+    dest_dir: "/path/to/destination/directory"
+
+  tasks:
+    - name: Clone repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ dest_dir }}"
