@@ -7,3 +7,4 @@ repository_path=$(git rev-parse --show-toplevel)
 # Run the docker-compose up command, to bring up the Jenkins Server.
 export repository_path
 docker-compose up --build -d
+

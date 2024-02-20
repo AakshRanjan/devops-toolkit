@@ -1,5 +1,5 @@
 - name: Run socat container
-  hosts: localhost
+  hosts: jenkins_hosts
   become: true
 
   tasks:
