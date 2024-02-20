@@ -5,7 +5,7 @@
   tasks:
     - name: Run socat container
       community.general.docker_container:
-        name: socat
+        name: jenkins-builders-alpine-socat
         image: alpine/socat
         detach: yes
         restart_policy: always
