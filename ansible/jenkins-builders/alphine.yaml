@@ -1,14 +1,18 @@
-- name: Run Docker container
+- name: Run socat container
+  hosts: localhost
   become: true
 
-  docker_container:
-    name: my_container
-    image: alpine/socat
-    command: "tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock"
-    restart_policy: always
-    ports:
-      - "127.0.0.1:2376:2375"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    networks:
-      - name: jenkins
+  tasks:
+    - name: Run socat container
+      community.general.docker_container:
+        name: socat
+        image: alpine/socat
+        detach: yes
+        restart_policy: always
+        published_ports:
+          - "127.0.0.1:2376:2375"
+        networks:
+          - name: jenkins
+        volumes:
+          - "/var/run/docker.sock:/var/run/docker.sock"
+        command: "tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock"

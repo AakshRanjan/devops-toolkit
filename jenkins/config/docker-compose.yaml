@@ -8,7 +8,7 @@ services:
     container_name: jenkins
     restart: on-failure
     networks:
-      - my-network
+      - jenkins
     environment:
       DOCKER_HOST: tcp://docker:2376
       DOCKER_CERT_PATH: /certs/client
@@ -27,14 +27,15 @@ services:
     container_name: nginx
     restart: always
     networks:
-      - my-network
+      - jenkins
     ports:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
 
 networks:
-  my-network:
+  jenkins:
+    external: true
 
 volumes:
   jenkins-data:
