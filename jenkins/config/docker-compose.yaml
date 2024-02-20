@@ -2,7 +2,9 @@ version: "3.8"
 
 services:
   jenkins:
-    image: jenkins-image:latest
+    build:
+      context: ${repository_path}/jenkins/config
+      dockerfile: Dockerfile.jenkins
     container_name: jenkins
     restart: on-failure
     networks:
@@ -19,7 +21,9 @@ services:
       - jenkins-docker-certs:/certs/client:ro
 
   nginx:
-    image: nginx-image:latest
+    build:
+      context: ${repository_path}/jenkins/config
+      dockerfile: Dockerfile.nginx
     container_name: nginx
     restart: always
     networks:
