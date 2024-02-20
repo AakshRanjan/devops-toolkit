@@ -41,6 +41,13 @@
         state: present
       become: true
 
+    - name: Add user to Docker group
+      become: yes
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
     - name: Start Docker service
       service:
         name: docker
