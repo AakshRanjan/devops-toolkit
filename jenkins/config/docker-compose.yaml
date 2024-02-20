@@ -4,7 +4,7 @@ services:
   jenkins:
     build:
       context: ${repository_path}/jenkins/config
-      dockerfile: Dockerfile.jenkins
+      dockerfile: dockerfile.jenkins
     container_name: jenkins
     restart: on-failure
     networks:
@@ -23,7 +23,7 @@ services:
   nginx:
     build:
       context: ${repository_path}/jenkins/config
-      dockerfile: Dockerfile.nginx
+      dockerfile: dockerfile.nginx
     container_name: nginx
     restart: always
     networks:
