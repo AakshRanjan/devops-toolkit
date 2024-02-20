@@ -38,6 +38,7 @@
         name:
           - docker-ce
           - docker-ce-cli
+          - docker-compose
         state: present
       become: true
 
