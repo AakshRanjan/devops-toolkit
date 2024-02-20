@@ -1,0 +1,7 @@
+# Use the official Python base image
+FROM jenkins/agent:alpine-jdk21
+
+# Install the Python Package Manager and Build Dependencies
+USER root
+RUN apk add --no-cache python3 py3-pip
+USER jenkins
