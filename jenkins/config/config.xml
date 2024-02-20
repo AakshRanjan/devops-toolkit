@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+    <disableSignup>true</disableSignup>
+    <enableCaptcha>false</enableCaptcha>
+    <users>
+      <hudson.model.User>
+        <id>aakshranjan</id>
+        <fullName>Administrator</fullName>
+        <passwordHash>#jbcrypt:$2a$10$MPka/aIyV1D2fGroyDSS2O9IhCmpXhRpCXM9yPoP8jGfdzTi3Jzt2</passwordHash>
+      </hudson.model.User>
+    </users>
+  </securityRealm>
+  <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
+    <denyAnonymousReadAccess>true</denyAnonymousReadAccess>
+  </authorizationStrategy>
+</config>
