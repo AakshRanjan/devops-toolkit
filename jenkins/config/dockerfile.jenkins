@@ -1,9 +1,6 @@
 # Use the official Jenkins image as the base image
 FROM jenkins/jenkins:latest
 
-# Copy Jenkins configuration files
-COPY config.xml /var/jenkins_home/config.xml
-
 # Set up Jenkins home directory permissions
 USER root
 RUN chown -R jenkins:jenkins /var/jenkins_home
