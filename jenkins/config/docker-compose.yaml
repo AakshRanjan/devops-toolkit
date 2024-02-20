@@ -35,7 +35,7 @@ services:
 
 networks:
   jenkins:
-    external: true
+    driver: bridge
 
 volumes:
   jenkins-data:
