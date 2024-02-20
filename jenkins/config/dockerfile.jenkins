@@ -3,10 +3,6 @@ FROM jenkins/jenkins:latest
 
 # Copy Jenkins configuration files
 COPY config.xml /var/jenkins_home/config.xml
-COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-
-# Install plugins from plugins.txt
-RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 
 # Set up Jenkins home directory permissions
 USER root

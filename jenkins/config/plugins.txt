@@ -1,3 +1,0 @@
-# List of Jenkins plugins to install
-blueocean:latest
-docker-workflow:latest
