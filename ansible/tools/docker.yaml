@@ -1,5 +1,6 @@
 ---
 - name: Install Docker (Ubuntu)
+  hosts: all
   become: true
 
   tasks:
