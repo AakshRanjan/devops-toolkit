@@ -1,0 +1,32 @@
+- name: Killall ssh-agent
+  shell: killall ssh-agent
+  args:
+    executable: /bin/bash
+  become: true
+
+- name: Start SSH agent
+  shell: eval "$(ssh-agent)"
+  args:
+    executable: /bin/bash
+  become: true
+
+- name: Find SSH keys
+  find:
+    paths: "{{ src_path }}"
+    patterns: "*"
+    recurse: no
+  register: ssh_key_files
+
+- name: Copy SSH keys to Agent
+  copy:
+    src: "{{ item.path }}"
+    dest: "{{ dest_path }}"
+    remote_src: yes
+  become: true
+  loop: "{{ ssh_key_files.files }}"
+
+- name: Add SSH key to Agent
+  shell: ssh-add "{{ dest_path }}/{{ key_name }}"
+  args:
+    executable: /bin/bash
+  become: true
