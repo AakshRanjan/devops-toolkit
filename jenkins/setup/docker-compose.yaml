@@ -39,4 +39,7 @@ networks:
 
 volumes:
   jenkins-data:
+    external:
+      - driver: ${repository_path}/jenkins/data
+
   jenkins-docker-certs:
