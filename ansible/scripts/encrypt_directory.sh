@@ -20,6 +20,8 @@ first_iteration=true
 for file_path in "$directory_path"/*; do
     # Extract the file name without the directory path
     file_name=$(basename "$file_path")
+    # Replace '.' with '_' in file name
+    file_name=${file_name//./_}
     # Extract the content of the file
     file_content=$(cat "$file_path")
     # Encrypt the content using ansible-vault

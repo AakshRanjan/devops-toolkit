@@ -16,7 +16,8 @@ encrypted_file_path=$2
 
 # Extract the file name without the directory path
 file_name=$(basename "$file_path")
-
+# Replace '.' with '_' in file name
+file_name=${file_name//./_}
 # Extract the content of the file
 file_content=$(cat "$file_path")
 
