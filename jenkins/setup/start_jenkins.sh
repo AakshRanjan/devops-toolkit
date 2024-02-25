@@ -6,6 +6,7 @@ repository_path=$(git rev-parse --show-toplevel)
 
 # Create a directory to mount 
 mkdir -p ${repository_path}/jenkins/data
+mkdir -p ${repository_path}/jenkins/certs
 
 # Run the docker-compose up command, to bring up the Jenkins Server.
 export repository_path

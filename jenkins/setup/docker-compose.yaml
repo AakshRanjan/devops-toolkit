@@ -39,7 +39,11 @@ networks:
 
 volumes:
   jenkins-data:
-    external:
-      - driver: ${repository_path}/jenkins/data
+    type: None
+    driver: ${repository_path}/jenkins/data
+    o: bind
 
   jenkins-docker-certs:
+    type: None
+    driver: ${repository_path}/jenkins/certs
+    o: bind
