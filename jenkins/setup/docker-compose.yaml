@@ -39,11 +39,7 @@ networks:
 
 volumes:
   jenkins-data:
-    type: None
-    driver: ${repository_path}/jenkins/data
-    o: bind
+    driver: ${HOME}/workspace/jenkins-data
 
   jenkins-docker-certs:
-    type: None
-    driver: ${repository_path}/jenkins/certs
-    o: bind
+    driver: ${HOME}/workspace/jenkins-certs
