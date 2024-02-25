@@ -18,13 +18,15 @@ first_iteration=true
 
 # Iterate over each file in the directory
 for file_path in "$directory_path"/*; do
+    # Reset file content
+    file_content=""
     # Extract the file name without the directory path
     file_name=$(basename "$file_path")
     # Replace '.' with '_' in file name
     file_name=${file_name//./_}
     # Extract the content of the file
-    while IFS= read -r line; do
-        file_content="$file_content$line\n"
+    while read line; do
+        file_content="$file_content$line"$'\n'
     done < "$file_path"
     # Encrypt the content using ansible-vault
     if [ "$first_iteration" = true ]; then
