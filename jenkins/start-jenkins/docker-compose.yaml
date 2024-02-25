@@ -3,7 +3,7 @@ version: "3.8"
 services:
   jenkins:
     build:
-      context: ${repository_path}/jenkins/config
+      context: ${repository_path}/jenkins/start-jenkins
       dockerfile: dockerfile.jenkins
     container_name: jenkins
     restart: on-failure
@@ -18,7 +18,7 @@ services:
       - "50000:50000"
     volumes:
       - jenkins-data:/var/jenkins_home
-      - jenkins-docker-certs:/certs/client
+      - jenkins-docker-certs:/certs/client:ro
 
   nginx:
     build:
