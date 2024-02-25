@@ -1,0 +1,15 @@
+- name: Create a workspace directory
+  file:
+    path: /home/ubuntu/workspace
+    state: directory
+
+- name: Clone all the repositories
+  git:
+    repo: "{{ item.repo }}"
+    dest: "/home/ubuntu/workspace/{{ item.name }}"
+    clone: yes
+  loop: "{{ repos }}"
+  vars:
+    repos:
+      - name: devops-toolkit
+        repo: https://github.com/AakshRanjan/devops-toolkit.git

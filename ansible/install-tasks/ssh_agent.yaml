@@ -1,32 +1,27 @@
-- name: Killall ssh-agent
-  shell: killall ssh-agent
-  args:
-    executable: /bin/bash
-  become: true
-
-- name: Start SSH agent
-  shell: eval "$(ssh-agent)"
-  args:
-    executable: /bin/bash
-  become: true
-
-- name: Find SSH keys
-  find:
-    paths: "{{ src_path }}"
-    patterns: "*"
-    recurse: no
-  register: ssh_key_files
-
-- name: Copy SSH keys to Agent
+- name: Copy github SSH keys
   copy:
-    src: "{{ item.path }}"
-    dest: "{{ dest_path }}"
-    remote_src: yes
+    content: "{{ item.value }}"
+    dest: "/home/ubuntu/.ssh/{{ item.key }}"
+    owner: ubuntu
+    group: ubuntu
+    mode: 0600
   become: true
-  loop: "{{ ssh_key_files.files }}"
+  loop:
+    - { key: "github", value: "{{ github }}" }
+    - { key: "github.pub", value: "{{ github_pub }}" }
 
-- name: Add SSH key to Agent
-  shell: ssh-add "{{ dest_path }}/{{ key_name }}"
-  args:
-    executable: /bin/bash
+- name: Copy config file
+  copy:
+    content: "{{ item.value | string }}"
+    dest: "/home/ubuntu/.ssh/{{ item.key }}"
+    owner: ubuntu
+    group: ubuntu
+  become: true
+  loop:
+    - { key: "config", value: "{{ config }}" }
+
+- name: Starting an SSH Agent
+  shell: |
+    eval $(ssh-agent)
+    ssh-add /home/ubuntu/.ssh/github
   become: true

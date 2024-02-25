@@ -1,0 +1,20 @@
+---
+- name: Deploy Jenkins
+  hosts: jenkins_hosts
+  vars_files:
+    - encrypted_data
+
+  tasks:
+    - name: Add SSH Agent
+      import_tasks: ../install-tasks/ssh_agent.yaml
+
+    - name: Install Docker
+      import_tasks: ../install-tasks/docker.yaml
+
+    - name: Install Workspace
+      import_tasks: ../install-tasks/workspace.yaml
+
+    - name: Start Jenkins Contianer
+      shell: |
+        /home/ubuntu/workspace/devops-toolkit/jenkins/setup/start_jenkins.sh
+      become: true
