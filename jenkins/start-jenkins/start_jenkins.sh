@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run the docker clean_up.sh script
-repository_path=$(git rev-parse --show-toplevel)
+repository_path=${HOME}/workspace/devops-toolkit
 . ${repository_path}/jenkins/scripts/docker/clean_up.sh
 
 # Create a directory to mount 
