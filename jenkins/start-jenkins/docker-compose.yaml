@@ -39,7 +39,15 @@ networks:
 
 volumes:
   jenkins-data:
-    driver: ${HOME}/workspace/jenkins-data
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/workspace/jenkins-data
 
   jenkins-docker-certs:
-    driver: ${HOME}/workspace/jenkins-certs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/workspace/jenkins-certs
