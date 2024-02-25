@@ -22,7 +22,7 @@ services:
 
   nginx:
     build:
-      context: ${repository_path}/jenkins/config
+      context: ${repository_path}/jenkins/start-jenkins
       dockerfile: dockerfile.nginx
     container_name: nginx
     restart: always

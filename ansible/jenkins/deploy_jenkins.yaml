@@ -16,5 +16,5 @@
 
     - name: Start Jenkins Container
       shell: |
-        /home/ubuntu/workspace/devops-toolkit/jenkins/setup/start_jenkins.sh
+        /home/ubuntu/workspace/devops-toolkit/jenkins/start-jenkins/start_jenkins.sh
       become: true
