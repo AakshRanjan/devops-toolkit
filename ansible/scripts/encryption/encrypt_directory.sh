@@ -23,7 +23,9 @@ for file_path in "$directory_path"/*; do
     # Replace '.' with '_' in file name
     file_name=${file_name//./_}
     # Extract the content of the file
-    file_content=$(cat "$file_path")
+    while IFS= read -r line; do
+        file_content="$file_content$line\n"
+    done < "$file_path"
     # Encrypt the content using ansible-vault
     if [ "$first_iteration" = true ]; then
         ansible-vault encrypt_string "$file_content" --name "$file_name" --vault-password-file ~/.ansible-vault.txt > "$encrypted_file_path"
