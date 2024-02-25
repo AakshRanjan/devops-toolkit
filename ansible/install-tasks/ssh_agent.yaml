@@ -22,6 +22,8 @@
 
 - name: Starting an SSH Agent
   shell: |
+    #!/bin/bash
+
     eval $(ssh-agent)
     ssh-add /home/ubuntu/.ssh/github
   become: true
