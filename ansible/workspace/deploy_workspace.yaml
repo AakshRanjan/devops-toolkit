@@ -4,7 +4,20 @@
   vars_files:
     - encrypted_data
 
+  #TODO: Convert this into a task to get the OS from the VM itself.
+  vars_prompt:
+    - name: VM_OS
+      prompt: "Choose an option (ubuntu_aws_ec2)"
+      private: no
+
   tasks:
+    - name: Set VM_HOME variable based on selected VM_OS
+      set_fact:
+        VM_HOME: "{{ item.value }}"
+      when: VM_OS == item.key
+      loop:
+        - { key: "ubuntu_aws_ec2", value: "/home/ubuntu" }
+
     - name: Add SSH Agent
       import_tasks: ../install-tasks/ssh_agent.yaml
 

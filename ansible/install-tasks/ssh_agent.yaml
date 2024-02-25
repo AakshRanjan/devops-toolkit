@@ -1,7 +1,7 @@
 - name: Copy github SSH keys
   copy:
     content: "{{ item.value }}"
-    dest: "/home/ubuntu/.ssh/{{ item.key }}"
+    dest: "{{ VM_HOME }}/.ssh/{{ item.key }}"
     owner: ubuntu
     group: ubuntu
     mode: 0600
@@ -13,7 +13,7 @@
 - name: Copy config file
   copy:
     content: "{{ item.value | string }}"
-    dest: "/home/ubuntu/.ssh/{{ item.key }}"
+    dest: "{{ VM_HOME }}/.ssh/{{ item.key }}"
     owner: ubuntu
     group: ubuntu
   become: true
@@ -25,5 +25,5 @@
     #!/bin/bash
 
     eval $(ssh-agent)
-    ssh-add /home/ubuntu/.ssh/github
+    ssh-add {{ VM_HOME }}/.ssh/github
   become: true

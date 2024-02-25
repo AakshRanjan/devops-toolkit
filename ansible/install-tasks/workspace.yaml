@@ -1,12 +1,12 @@
 - name: Create a workspace directory
   file:
-    path: /home/ubuntu/workspace
+    path: "{{ VM_HOME }}/workspace"
     state: directory
 
 - name: Clone all the repositories
   git:
     repo: "{{ item.repo }}"
-    dest: "/home/ubuntu/workspace/{{ item.name }}"
+    dest: "{{ VM_HOME }}/workspace/{{ item.name }}"
     clone: yes
   loop: "{{ repos }}"
   vars:
