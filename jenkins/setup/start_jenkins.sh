@@ -11,4 +11,3 @@ mkdir -p ${HOME}/workspace/jenkins-certs
 # Run the docker-compose up command, to bring up the Jenkins Server.
 export repository_path
 docker-compose up --build -d
-

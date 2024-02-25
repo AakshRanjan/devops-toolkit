@@ -14,7 +14,7 @@
     - name: Install Workspace
       import_tasks: ../install-tasks/workspace.yaml
 
-    - name: Start Jenkins Contianer
+    - name: Start Jenkins Container
       shell: |
         /home/ubuntu/workspace/devops-toolkit/jenkins/setup/start_jenkins.sh
       become: true
