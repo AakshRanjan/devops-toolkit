@@ -3,8 +3,9 @@
 set -e  # Exit immediately if a command exits with a non-zero status
 set -o pipefail  # Return value of the first failed command in a pipeline
 
-# Remove all running containers
+# Stop and remove all running containers
 if [ "$(docker ps -q)" ]; then
+    docker stop $(docker ps -q)
     docker rm -f $(docker ps -aq)
 fi
 
