@@ -1,25 +1,44 @@
 #!/bin/bash
 
+set -e  # Exit immediately if a command exits with a non-zero status
+set -o pipefail  # Return value of the first failed command in a pipeline
+
 # Remove all running containers
-docker rm -f $(docker ps -aq)
+if [ "$(docker ps -q)" ]; then
+    docker rm -f $(docker ps -aq)
+fi
 
 # Remove all images
-docker rmi -f $(docker images -aq)
+if [ "$(docker images -q)" ]; then
+    docker rmi -f $(docker images -aq)
+fi
 
 # Remove all volumes
-docker volume rm $(docker volume ls -q)
+if [ "$(docker volume ls -q)" ]; then
+    docker volume rm $(docker volume ls -q)
+fi
 
 # Remove all networks
-docker network rm $(docker network ls -q)
+if [ "$(docker network ls -q)" ]; then
+    docker network rm $(docker network ls -q)
+fi
 
 # Remove all dangling images
-docker image prune -f
+if [ "$(docker images -q -f dangling=true)" ]; then
+    docker image prune -f
+fi
 
 # Remove all dangling volumes
-docker volume prune -f
+if [ "$(docker volume ls -q -f dangling=true)" ]; then
+    docker volume prune -f
+fi
 
 # Remove all dangling networks
-docker network prune -f
+if [ "$(docker network ls -q -f dangling=true)" ]; then
+    docker network prune -f
+fi
 
 # Remove all dangling containers
-docker system prune -f
+if [ "$(docker ps -aq -f status=exited)" ]; then
+    docker system prune -f
+fi
