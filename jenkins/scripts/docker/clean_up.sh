@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -e  # Exit immediately if a command exits with a non-zero status
-set -o pipefail  # Return value of the first failed command in a pipeline
-
 # Stop and remove all running containers
 if [ "$(docker ps -q)" ]; then
     docker stop $(docker ps -q)
