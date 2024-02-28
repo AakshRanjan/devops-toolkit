@@ -13,3 +13,5 @@
     repos:
       - name: devops-toolkit
         repo: https://github.com/AakshRanjan/devops-toolkit.git
+      - name: advanced-logging
+        repo: https://github.com/AakshRanjan/advanced_logging.git
